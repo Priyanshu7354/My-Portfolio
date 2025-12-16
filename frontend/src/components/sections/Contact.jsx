@@ -27,6 +27,11 @@ export default function Contact({ emailForm, setEmailForm, handleChange, handleS
     setLoading(true);
     setSubmitStatus(null);
 
+     // ✅ BACKEND URL (fallback included)
+    const API_URL =
+      import.meta.env.VITE_API_URL ||
+      "https://my-portfolio-golu.onrender.com";
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
