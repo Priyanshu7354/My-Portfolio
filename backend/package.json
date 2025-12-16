@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Backend for Priyanshu's Portfolio",
   "main": "index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18 <23"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
