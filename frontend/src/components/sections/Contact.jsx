@@ -28,7 +28,7 @@ export default function Contact({ emailForm, setEmailForm, handleChange, handleS
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://your-render-url.onrender.com/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(emailForm),
