@@ -1,3 +1,4 @@
+// src/components/sections/Contact.jsx (Updated to use props correctly)
 import React, { useState } from "react";
 import {
   FaEnvelope,
@@ -10,7 +11,7 @@ import {
 } from "react-icons/fa";
 import FadeInWhenVisible from "../animations/FadeInWhenVisible";
 
-export default function Contact({ emailForm, setEmailForm, handleChange }) {
+export default function Contact({ emailForm, setEmailForm, handleChange, handleSubmit }) {
   const [copied, setCopied] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -26,43 +27,25 @@ export default function Contact({ emailForm, setEmailForm, handleChange }) {
     setLoading(true);
     setSubmitStatus(null);
 
-    // ✅ Backend URL from environment
-    const API_URL = import.meta.env.VITE_API_URL;
-
-    if (!API_URL) {
-      console.error("VITE_API_URL is not defined");
-      setSubmitStatus("error");
-      setLoading(false);
-      return;
-    }
-
     try {
-      const response = await fetch(`${API_URL}/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(emailForm),
       });
 
-      // Safely parse JSON
-      let data = {};
-      try {
-        data = await response.json();
-      } catch {
-        data = { message: "Invalid server response" };
-      }
+      const data = await response.json();
 
       if (response.ok) {
-        setSubmitStatus("success");
+        setSubmitStatus('success');
+        // Reset form using prop
         setEmailForm({ name: "", email: "", message: "" });
       } else {
-        console.error("Server error:", data);
-        setSubmitStatus("error");
+        setSubmitStatus('error');
       }
     } catch (error) {
-      console.error("Submit error:", error);
-      setSubmitStatus("error");
+      console.error('Submit error:', error);
+      setSubmitStatus('error');
     } finally {
       setLoading(false);
     }
@@ -75,7 +58,15 @@ export default function Contact({ emailForm, setEmailForm, handleChange }) {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+          <div
+            className="
+              bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col transition-all
+              hover:shadow-xl
+              hover:drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]
+              dark:hover:drop-shadow-[0_0_20px_rgba(129,140,248,0.7)]
+              hover:-translate-y-1
+            "
+          >
             <h3 className="font-semibold mb-3 text-lg">Send a Message</h3>
 
             <form onSubmit={handleFormSubmit} className="space-y-4">
@@ -84,7 +75,7 @@ export default function Contact({ emailForm, setEmailForm, handleChange }) {
                 value={emailForm.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="w-full px-3 py-2 rounded border"
+                className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent"
                 required
                 disabled={loading}
               />
@@ -95,7 +86,7 @@ export default function Contact({ emailForm, setEmailForm, handleChange }) {
                 value={emailForm.email}
                 onChange={handleChange}
                 placeholder="Your Email"
-                className="w-full px-3 py-2 rounded border"
+                className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent"
                 required
                 disabled={loading}
               />
@@ -106,86 +97,138 @@ export default function Contact({ emailForm, setEmailForm, handleChange }) {
                 onChange={handleChange}
                 placeholder="Your Message"
                 rows="4"
-                className="w-full px-3 py-2 rounded border"
+                className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent"
                 required
                 disabled={loading}
-              />
+              ></textarea>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-3 bg-indigo-600 text-white rounded-lg disabled:opacity-50"
+                className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Sending..." : "Send Message"}
+                {loading ? 'Sending...' : 'Send Message'}
               </button>
 
-              {submitStatus === "success" && (
-                <p className="text-green-600 text-sm">
-                  Message sent successfully 🎉
-                </p>
+              {submitStatus === 'success' && (
+                <p className="text-green-600 text-sm mt-2">Message sent successfully! 🎉</p>
               )}
-              {submitStatus === "error" && (
-                <p className="text-red-600 text-sm">
-                  Failed to send message. Try again.
-                </p>
+              {submitStatus === 'error' && (
+                <p className="text-red-600 text-sm mt-2">Failed to send message. Please try again.</p>
               )}
             </form>
           </div>
 
           {/* Contact Info */}
-          <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow space-y-4">
-            <div className="flex justify-between items-center">
-              <div className="flex gap-3 items-center">
+          <div
+            className="
+              p-6 bg-gradient-to-tr from-white to-indigo-50
+              dark:from-gray-800 dark:to-gray-800
+              rounded-xl shadow flex flex-col gap-5 transition-all
+              hover:shadow-xl
+              hover:drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]
+              dark:hover:drop-shadow-[0_0_20px_rgba(129,140,248,0.7)]
+              hover:-translate-y-1
+            "
+          >
+            {/* Email */}
+            <div className="flex items-center gap-3 justify-between">
+              <div className="flex items-center gap-3">
                 <FaEnvelope className="text-indigo-500" />
-                <span className="font-semibold">
-                  pbhatnagar631@gmail.com
-                </span>
+                <span className="font-semibold">pbhatnagar631@gmail.com</span>
               </div>
               <button
                 onClick={() =>
                   copyToClipboard("pbhatnagar631@gmail.com", "email")
                 }
+                className="text-indigo-500 hover:scale-110 transition"
+                aria-label="Copy Email"
               >
-                {copied === "email" ? <FaCheck /> : <FaCopy />}
+                {copied === "email" ? <FaCheck className="text-green-500" /> : <FaCopy />}
               </button>
             </div>
 
-            <div className="flex justify-between items-center">
-              <div className="flex gap-3 items-center">
+            {/* Phone */}
+            <div className="flex items-center gap-3 justify-between">
+              <div className="flex items-center gap-3">
                 <FaPhoneAlt className="text-indigo-500" />
                 <span className="font-semibold">+91 7354352931</span>
               </div>
               <button
-                onClick={() =>
-                  copyToClipboard("+91 7354352931", "phone")
-                }
+                onClick={() => copyToClipboard("+917354352931", "phone")}
+                className="text-indigo-500 hover:scale-110 transition"
+                aria-label="Copy Phone"
               >
-                {copied === "phone" ? <FaCheck /> : <FaCopy />}
+                {copied === "phone" ? <FaCheck className="text-green-500" /> : <FaCopy />}
               </button>
             </div>
 
-            <div className="flex gap-3 items-center">
+            {/* Location */}
+            <div className="flex items-center gap-3">
               <FaMapMarkerAlt className="text-indigo-500" />
               <span className="font-semibold">Bhopal, India</span>
             </div>
 
-            <a
-              href="https://github.com/Priyanshu7354"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-3"
-            >
-              <FaGithub /> GitHub
-            </a>
+            {/* Social Profiles */}
+            <div className="space-y-4 mt-4">
+              <a
+                href="https://github.com/Priyanshu7354"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group flex items-center justify-between
+                  p-4 rounded-xl border border-gray-200 dark:border-gray-700
+                  bg-white dark:bg-gray-800
+                  transition-all duration-300
+                  hover:-translate-y-1
+                  hover:shadow-xl
+                  hover:drop-shadow-[0_0_12px_rgba(99,102,241,0.4)]
+                  dark:hover:drop-shadow-[0_0_18px_rgba(129,140,248,0.6)]
+                "
+              >
+                <div className="flex items-center gap-4">
+                  <FaGithub className="text-2xl text-gray-700 dark:text-gray-300 group-hover:text-indigo-500 transition" />
+                  <div>
+                    <div className="font-semibold">GitHub</div>
+                    <div className="text-sm text-gray-500">
+                      View my open-source projects
+                    </div>
+                  </div>
+                </div>
+                <span className="text-sm text-indigo-500 opacity-0 group-hover:opacity-100 transition">
+                  Visit →
+                </span>
+              </a>
 
-            <a
-              href="https://www.linkedin.com/in/priyanshu-bhatnagar45/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-3"
-            >
-              <FaLinkedin /> LinkedIn
-            </a>
+              <a
+                href="https://www.linkedin.com/in/priyanshu-bhatnagar45/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group flex items-center justify-between
+                  p-4 rounded-xl border border-gray-200 dark:border-gray-700
+                  bg-white dark:bg-gray-800
+                  transition-all duration-300
+                  hover:-translate-y-1
+                  hover:shadow-xl
+                  hover:drop-shadow-[0_0_12px_rgba(99,102,241,0.4)]
+                  dark:hover:drop-shadow-[0_0_18px_rgba(129,140,248,0.6)]
+                "
+              >
+                <div className="flex items-center gap-4">
+                  <FaLinkedin className="text-2xl text-blue-600 group-hover:text-indigo-500 transition" />
+                  <div>
+                    <div className="font-semibold">LinkedIn</div>
+                    <div className="text-sm text-gray-500">
+                      Connect with me professionally
+                    </div>
+                  </div>
+                </div>
+                <span className="text-sm text-indigo-500 opacity-0 group-hover:opacity-100 transition">
+                  View →
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
