@@ -1,13 +1,10 @@
-// backend/index.js
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
-const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 /* =======================
    Middleware
@@ -16,33 +13,27 @@ app.use(cors());
 app.use(express.json());
 
 /* =======================
-   MongoDB Connection
-   (optional – safe)
+   MongoDB (optional)
 ======================= */
-mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/portfolio")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB error:", err.message));
-
-/* =======================
-   Nodemailer Transporter
-======================= */
-if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-  console.error("❌ EMAIL credentials missing in .env");
+if (process.env.MONGODB_URI) {
+  mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => console.log("✅ MongoDB connected"))
+    .catch((err) => console.error("❌ MongoDB error:", err.message));
 }
 
+/* =======================
+   Nodemailer
+======================= */
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // Gmail App Password
-  },
+    pass: process.env.EMAIL_PASS
+  }
 });
 
-/* =======================
-   Verify Email Transport
-======================= */
-transporter.verify((err, success) => {
+transporter.verify((err) => {
   if (err) {
     console.error("❌ Email transporter error:", err.message);
   } else {
@@ -51,8 +42,15 @@ transporter.verify((err, success) => {
 });
 
 /* =======================
-   Contact API
+   Routes
 ======================= */
+
+// Health check
+app.get("/api/health", (req, res) => {
+  res.json({ status: "OK" });
+});
+
+// Contact form
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -68,41 +66,24 @@ app.post("/api/contact", async (req, res) => {
       subject: `New message from ${name}`,
       html: `
         <h3>New Portfolio Message</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Message:</b></p>
         <p>${message}</p>
-      `,
+      `
     });
 
-    res.status(200).json({ success: true, message: "Message sent successfully" });
-  } catch (error) {
-    console.error("Email send error:", error.message);
+    res.json({ success: true, message: "Message sent successfully" });
+  } catch (err) {
+    console.error("❌ Send error:", err.message);
     res.status(500).json({ error: "Failed to send message" });
   }
 });
 
 /* =======================
-   Health Check
-======================= */
-app.get("/api/health", (req, res) => {
-  res.json({ status: "OK" });
-});
-
-/* =======================
-   Production Frontend
-======================= */
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-  });
-}
-
-/* =======================
    Start Server
 ======================= */
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
