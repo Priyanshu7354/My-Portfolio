@@ -1,4 +1,4 @@
-// src/components/sections/Contact.jsx (Updated to use props correctly)
+// src/components/sections/Contact.jsx (Fixed Fetch URL)
 import React, { useState } from "react";
 import {
   FaEnvelope,
@@ -27,13 +27,10 @@ export default function Contact({ emailForm, setEmailForm, handleChange, handleS
     setLoading(true);
     setSubmitStatus(null);
 
-     // ✅ BACKEND URL (fallback included)
-    const API_URL =
-      import.meta.env.VITE_API_URL ||
-      "https://my-portfolio-golu.onrender.com";
-
     try {
-      const response = await fetch('/api/contact', {
+      // FIXED: Use full backend URL from env var (trailing slash optional, but /api/contact expects no extra)
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://my-portfolio-golu.onrender.com';
+      const response = await fetch(`${apiUrl}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(emailForm),

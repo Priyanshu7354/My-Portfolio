@@ -12,8 +12,10 @@ const app = express();
 ========================= */
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://my-portfolio-theta-sage-ubtwkt1bq9.vercel.app",
   "https://portfolio.priyanshu.dev"
 ];
+
 
 app.use(
   cors({
