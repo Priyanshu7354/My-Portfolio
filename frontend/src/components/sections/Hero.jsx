@@ -67,7 +67,7 @@ export default function Hero({ profilePic, dark }) {
             "
           >
             <div className="text-xs text-gray-500">Location</div>
-            <div className="font-semibold">India</div>
+            <div className="font-semibold">Bhopal, India</div>
           </div>
         </div>
       </div>
