@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import profilePic from "./assets/profile.jpeg";
+import profilePic from "./assets/profile5.png";
 import { projectsData } from "./data/projects";
 import { certificates } from "./data/certificates";
 import Header from "./components/layout/Header";

@@ -14,8 +14,9 @@ export default function Resume() {
         <h2 className="text-3xl font-bold mb-4 text-indigo-400">
           Resume
         </h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
-          Download or view my latest resume.
+       <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl">
+          Download or view my latest resume to learn more about my
+          experience, skills, and projects.
         </p>
         <div className="flex gap-4">
           <a

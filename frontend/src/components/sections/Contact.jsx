@@ -102,18 +102,52 @@ export default function Contact() {
           </div>
 
           {/* -------- CTA -------- */}
-          <div className="p-10 rounded-2xl bg-gradient-to-br from-indigo-600 to-indigo-500 text-white text-center border border-white/10 shadow transition-all hover:shadow-xl hover:-translate-y-1 flex flex-col justify-center items-center">
-            <h3 className="text-2xl font-semibold mb-4">Send Me a Message</h3>
-            <p className="text-indigo-100 max-w-sm mb-8">
-              Use my contact form and I’ll respond as soon as possible.
-            </p>
-            <button
-              onClick={openGoogleForm}
-              className="px-10 py-4 bg-white text-indigo-600 font-semibold rounded-xl shadow-lg hover:scale-105 transition-all"
-            >
-              Open Contact Form
-            </button>
-          </div>
+<div
+  className="
+    p-10
+    rounded-2xl
+    bg-gradient-to-br from-indigo-600 to-indigo-500
+    text-white
+    text-center
+    border border-white/10
+    shadow-lg
+    transition-all duration-300
+
+    hover:shadow-2xl
+    hover:drop-shadow-[0_0_18px_rgba(99,102,241,0.6)]
+    hover:-translate-y-1
+
+    flex flex-col justify-center items-center
+  "
+>
+  <h3 className="text-2xl font-semibold mb-4">
+    Send Me a Message
+  </h3>
+
+  <p className="text-indigo-100 max-w-sm mb-8">
+    Use my contact form and I’ll respond as soon as possible.
+  </p>
+
+  <button
+    onClick={openGoogleForm}
+    className="
+      px-10 py-4
+      bg-white text-indigo-600
+      font-semibold
+      rounded-xl
+      shadow-md
+      transition-all duration-300
+
+      hover:scale-105
+      hover:shadow-xl
+      focus:outline-none
+      focus:ring-2 focus:ring-white/60
+    "
+  >
+    Open Contact Form
+  </button>
+</div>
+
         </div>
 
         {/* ================= SOCIAL LINKS ================= */}
