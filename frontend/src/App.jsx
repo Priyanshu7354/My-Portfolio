@@ -1,4 +1,3 @@
-// src/App.jsx (Updated to pass setEmailForm to Contact)
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import profilePic from "./assets/profile.jpg";
@@ -12,7 +11,7 @@ import Projects from "./components/sections/Projects";
 import Education from "./components/sections/Education";
 import Experience from "./components/sections/Experience";
 import Resume from "./components/sections/Resume";
-import Contact from "./components/sections/Contact";
+import Contact from "./components/sections/Contact";  // Now static
 import Footer from "./components/layout/Footer";
 import FadeInWhenVisible from "./components/animations/FadeInWhenVisible";
 import ProjectModal from "./components/modals/ProjectModal";
@@ -23,11 +22,7 @@ export default function App() {
   const [activeProject, setActiveProject] = useState(null);
   const [activeCertificate, setActiveCertificate] = useState(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [emailForm, setEmailForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  // REMOVED: emailForm state, handleChange, handleSubmit (no form needed)
 
   // Auto theme detection (syncs with system)
   useEffect(() => {
@@ -41,34 +36,6 @@ export default function App() {
   const toggleDark = () => setDark((v) => !v);
 
   const closeMobileMenu = () => setShowMobileMenu(false);
-
-  const handleChange = (e) =>
-    setEmailForm({ ...emailForm, [e.target.name]: e.target.value });
-
-  // Updated handleSubmit to use backend API
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(emailForm),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Message sent successfully! 🎉");
-        setEmailForm({ name: "", email: "", message: "" });
-      } else {
-        alert("Something went wrong. Try again later!");
-      }
-    } catch (error) {
-      console.error("API Error:", error);
-      alert("Something went wrong. Try again later!");
-    }
-  };
 
   return (
     <div className={dark ? "dark" : ""}>
@@ -162,12 +129,7 @@ export default function App() {
             <Resume />
           </FadeInWhenVisible>
           <FadeInWhenVisible>
-            <Contact 
-              emailForm={emailForm} 
-              setEmailForm={setEmailForm}
-              handleChange={handleChange} 
-              handleSubmit={handleSubmit} 
-            />
+            <Contact />  {/* Now no props needed */}
           </FadeInWhenVisible>
           <Footer />
         </div>

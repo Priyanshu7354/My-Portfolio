@@ -1,4 +1,3 @@
-// src/components/sections/Contact.jsx (Fixed Fetch URL)
 import React, { useState } from "react";
 import {
   FaEnvelope,
@@ -11,10 +10,8 @@ import {
 } from "react-icons/fa";
 import FadeInWhenVisible from "../animations/FadeInWhenVisible";
 
-export default function Contact({ emailForm, setEmailForm, handleChange, handleSubmit }) {
+export default function Contact() {
   const [copied, setCopied] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
 
   const copyToClipboard = (text, type) => {
     navigator.clipboard.writeText(text);
@@ -22,106 +19,13 @@ export default function Contact({ emailForm, setEmailForm, handleChange, handleS
     setTimeout(() => setCopied(""), 2000);
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setSubmitStatus(null);
-
-    try {
-      // FIXED: Use full backend URL from env var (trailing slash optional, but /api/contact expects no extra)
-      const apiUrl = import.meta.env.VITE_API_URL || 'https://my-portfolio-golu.onrender.com';
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(emailForm),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        // Reset form using prop
-        setEmailForm({ name: "", email: "", message: "" });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Submit error:', error);
-      setSubmitStatus('error');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <FadeInWhenVisible>
+    <FadeInWhenVisible delay={0.4}>
       <section id="contact" className="mt-16">
-        <h2 className="text-2xl font-semibold mb-6">Contact</h2>
+        <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Form */}
-          <div
-            className="
-              bg-white dark:bg-gray-800 p-6 rounded-xl shadow flex flex-col transition-all
-              hover:shadow-xl
-              hover:drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]
-              dark:hover:drop-shadow-[0_0_20px_rgba(129,140,248,0.7)]
-              hover:-translate-y-1
-            "
-          >
-            <h3 className="font-semibold mb-3 text-lg">Send a Message</h3>
-
-            <form onSubmit={handleFormSubmit} className="space-y-4">
-              <input
-                name="name"
-                value={emailForm.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent"
-                required
-                disabled={loading}
-              />
-
-              <input
-                name="email"
-                type="email"
-                value={emailForm.email}
-                onChange={handleChange}
-                placeholder="Your Email"
-                className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent"
-                required
-                disabled={loading}
-              />
-
-              <textarea
-                name="message"
-                value={emailForm.message}
-                onChange={handleChange}
-                placeholder="Your Message"
-                rows="4"
-                className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-transparent"
-                required
-                disabled={loading}
-              ></textarea>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Sending...' : 'Send Message'}
-              </button>
-
-              {submitStatus === 'success' && (
-                <p className="text-green-600 text-sm mt-2">Message sent successfully! 🎉</p>
-              )}
-              {submitStatus === 'error' && (
-                <p className="text-red-600 text-sm mt-2">Failed to send message. Please try again.</p>
-              )}
-            </form>
-          </div>
-
-          {/* Contact Info */}
+          {/* Contact Info (Expanded) */}
           <div
             className="
               p-6 bg-gradient-to-tr from-white to-indigo-50
@@ -133,6 +37,11 @@ export default function Contact({ emailForm, setEmailForm, handleChange, handleS
               hover:-translate-y-1
             "
           >
+            <h3 className="font-semibold mb-4 text-lg">Let's Connect!</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              I'm always open to discussing new opportunities, creative ideas, or just chatting about tech. Reach out below!
+            </p>
+
             {/* Email */}
             <div className="flex items-center gap-3 justify-between">
               <div className="flex items-center gap-3">
@@ -140,9 +49,7 @@ export default function Contact({ emailForm, setEmailForm, handleChange, handleS
                 <span className="font-semibold">pbhatnagar631@gmail.com</span>
               </div>
               <button
-                onClick={() =>
-                  copyToClipboard("pbhatnagar631@gmail.com", "email")
-                }
+                onClick={() => copyToClipboard("pbhatnagar631@gmail.com", "email")}
                 className="text-indigo-500 hover:scale-110 transition"
                 aria-label="Copy Email"
               >
@@ -170,9 +77,12 @@ export default function Contact({ emailForm, setEmailForm, handleChange, handleS
               <FaMapMarkerAlt className="text-indigo-500" />
               <span className="font-semibold">Bhopal, India</span>
             </div>
+          </div>
 
-            {/* Social Profiles */}
-            <div className="space-y-4 mt-4">
+          {/* Social Profiles */}
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow transition-all hover:shadow-xl hover:-translate-y-1">
+            <h3 className="font-semibold mb-4 text-lg">Follow Me</h3>
+            <div className="space-y-4">
               <a
                 href="https://github.com/Priyanshu7354"
                 target="_blank"
