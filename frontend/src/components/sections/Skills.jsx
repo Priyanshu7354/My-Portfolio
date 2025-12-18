@@ -14,6 +14,7 @@ export default function Skills() {
           "Node.js",
           "MongoDB",
           "Tailwind",
+          "Python",
           "Git/GitHub",
         ].map((skill) => (
           <div
