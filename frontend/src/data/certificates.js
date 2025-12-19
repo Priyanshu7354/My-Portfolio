@@ -12,7 +12,7 @@ export const certificates = [
   },
   {
     title: "Generate Visual Prompts With AI (GenAI)",
-    src: "public/certificates/generate_visual_prompts_genai.pdf",
+    src: "/certificates/generate_visual_prompts_genai.pdf",
     type: "pdf",
   },
 ];
