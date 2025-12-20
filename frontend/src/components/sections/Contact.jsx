@@ -52,7 +52,6 @@ export default function Contact() {
   return (
     <FadeInWhenVisible delay={0.4}>
       <section id="contact" className="mt-24 space-y-20">
-
         {/* ================= HEADING ================= */}
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight">
@@ -65,7 +64,6 @@ export default function Contact() {
 
         {/* ================= CONTACT + CTA ================= */}
         <div className="grid lg:grid-cols-2 gap-10">
-
           {/* -------- Contact Info -------- */}
           <div className="p-6 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow transition-all hover:shadow-xl hover:drop-shadow-[0_0_15px_rgba(99,102,241,0.5)] dark:hover:drop-shadow-[0_0_20px_rgba(129,140,248,0.7)] hover:-translate-y-1">
             <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
@@ -77,8 +75,16 @@ export default function Contact() {
                   <FaEnvelope className="text-indigo-500" />
                   <span className="font-medium">pbhatnagar631@gmail.com</span>
                 </div>
-                <button onClick={() => copyToClipboard("pbhatnagar631@gmail.com", "email")}>
-                  {copied === "email" ? <FaCheck className="text-green-500" /> : <FaCopy className="text-indigo-500" />}
+                <button
+                  onClick={() =>
+                    copyToClipboard("pbhatnagar631@gmail.com", "email")
+                  }
+                >
+                  {copied === "email" ? (
+                    <FaCheck className="text-green-500" />
+                  ) : (
+                    <FaCopy className="text-indigo-500" />
+                  )}
                 </button>
               </div>
 
@@ -88,8 +94,14 @@ export default function Contact() {
                   <FaPhoneAlt className="text-indigo-500" />
                   <span className="font-medium">+91 7354352931</span>
                 </div>
-                <button onClick={() => copyToClipboard("+917354352931", "phone")}>
-                  {copied === "phone" ? <FaCheck className="text-green-500" /> : <FaCopy className="text-indigo-500" />}
+                <button
+                  onClick={() => copyToClipboard("+917354352931", "phone")}
+                >
+                  {copied === "phone" ? (
+                    <FaCheck className="text-green-500" />
+                  ) : (
+                    <FaCopy className="text-indigo-500" />
+                  )}
                 </button>
               </div>
 
@@ -102,8 +114,8 @@ export default function Contact() {
           </div>
 
           {/* -------- CTA -------- */}
-<div
-  className="
+          <div
+            className="
     p-10
     rounded-2xl
     bg-gradient-to-br from-indigo-600 to-indigo-500
@@ -119,18 +131,16 @@ export default function Contact() {
 
     flex flex-col justify-center items-center
   "
->
-  <h3 className="text-2xl font-semibold mb-4">
-    Send Me a Message
-  </h3>
+          >
+            <h3 className="text-2xl font-semibold mb-4">Send Me a Message</h3>
 
-  <p className="text-indigo-100 max-w-sm mb-8">
-    Use my contact form and I’ll respond as soon as possible.
-  </p>
+            <p className="text-indigo-100 max-w-sm mb-8">
+              Use my contact form and I’ll respond as soon as possible.
+            </p>
 
-  <button
-    onClick={openGoogleForm}
-    className="
+            <button
+              onClick={openGoogleForm}
+              className="
       px-10 py-4
       bg-white text-indigo-600
       font-semibold
@@ -143,11 +153,10 @@ export default function Contact() {
       focus:outline-none
       focus:ring-2 focus:ring-white/60
     "
-  >
-    Open Contact Form
-  </button>
-</div>
-
+            >
+              Open Contact Form
+            </button>
+          </div>
         </div>
 
         {/* ================= SOCIAL LINKS ================= */}
@@ -155,31 +164,45 @@ export default function Contact() {
           <h3 className="text-lg font-semibold mb-6">Connect With Me</h3>
 
           <div className="flex justify-center gap-6 flex-wrap">
-
             {/* GitHub */}
-            <a href="https://github.com/Priyanshu7354" target="_blank" rel="noopener noreferrer"
-              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(147,51,234,0.9)]">
+            <a
+              href="https://github.com/Priyanshu7354"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(147,51,234,0.9)]"
+            >
               <FaGithub className="text-xl text-gray-800 dark:text-white group-hover:rotate-12 group-hover:scale-125 transition-transform" />
             </a>
 
-            {/* GeeksforGeeks */}
-            <a href="https://auth.geeksforgeeks.org/user/pbhatnagar" target="_blank" rel="noopener noreferrer"
-              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(34,197,94,0.9)]">
-              <SiGeeksforgeeks className="text-xl text-green-600 group-hover:rotate-12 group-hover:scale-125 transition-transform" />
-            </a>
-
             {/* LinkedIn */}
-            <a href="https://www.linkedin.com/in/priyanshu-bhatnagar45/" target="_blank" rel="noopener noreferrer"
-              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(37,99,235,0.9)]">
+            <a
+              href="https://www.linkedin.com/in/priyanshu-bhatnagar45/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(37,99,235,0.9)]"
+            >
               <FaLinkedin className="text-xl text-blue-600 group-hover:rotate-12 group-hover:scale-125 transition-transform" />
             </a>
 
-            {/* Instagram */}
-            <a href="https://www.instagram.com/priyanshu_bhatnagar_/" target="_blank" rel="noopener noreferrer"
-              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(236,72,153,0.9)]">
-              <FaInstagram className="text-xl text-pink-500 group-hover:rotate-12 group-hover:scale-125 transition-transform" />
+            {/* GeeksforGeeks */}
+            <a
+              href="https://auth.geeksforgeeks.org/user/pbhatnagar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(34,197,94,0.9)]"
+            >
+              <SiGeeksforgeeks className="text-xl text-green-600 group-hover:rotate-12 group-hover:scale-125 transition-transform" />
             </a>
 
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/priyanshu_bhatnagar_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(236,72,153,0.9)]"
+            >
+              <FaInstagram className="text-xl text-pink-500 group-hover:rotate-12 group-hover:scale-125 transition-transform" />
+            </a>
           </div>
         </div>
       </section>
