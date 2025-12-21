@@ -1,6 +1,11 @@
 // src/data/certificates.js
 export const certificates = [
   {
+    title: "Get Started with Databricks for Generative AI",
+    src: "/certificates/Databricks.pdf",
+    type: "pdf",
+  },
+  {
     title: "Generate Visual Prompts With AI (GenAI)",
     src: "/certificates/generate_visual_prompts_genai.pdf",
     type: "pdf",
