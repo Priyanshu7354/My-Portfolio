@@ -29,6 +29,7 @@ const skills = [
   "Tailwind",
   "Python",
   "Git/GitHub",
+  "JAVA"
 ];
 
 export default function Skills() {
