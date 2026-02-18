@@ -20,6 +20,8 @@ const card = {
 };
 
 const skills = [
+  "Java",
+  "MySQL",
   "HTML5",
   "CSS3",
   "JavaScript",
@@ -28,8 +30,8 @@ const skills = [
   "MongoDB",
   "Tailwind",
   "Python",
-  "Git/GitHub",
-  "JAVA"
+  "Git/GitHub"
+  
 ];
 
 export default function Skills() {

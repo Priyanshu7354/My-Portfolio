@@ -32,7 +32,7 @@ export default function Header({
             Priyanshu Bhatnagar
           </div>
           <div className="text-xs text-gray-500 dark:text-gray-400">
-            Web Developer
+            Java Backend Developer
           </div>
         </div>
       </div>

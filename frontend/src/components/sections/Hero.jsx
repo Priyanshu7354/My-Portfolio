@@ -48,16 +48,16 @@ export default function Hero({ profilePic, dark }) {
         </p>
 
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-          I build modern <br className="hidden sm:block" />
+          I build robust <br className="hidden sm:block" />
           <span className="text-indigo-600">
-            delightful web experiences
+            scalable Java applications
           </span>
           .
         </h1>
 
         <p className="text-gray-600 dark:text-gray-300 max-w-xl leading-relaxed">
-          MERN Stack Developer focused on clean UI, responsive layouts,
-          performance, and smooth user interactions.
+          Java Developer focused on enterprise solutions, microservices,
+          performance optimization, and secure backend systems.
         </p>
 
         {/* CTA Buttons */}
@@ -113,7 +113,7 @@ export default function Hero({ profilePic, dark }) {
         {/* Info Cards */}
         <div className="grid grid-cols-2 gap-4 mt-6">
           {[
-            { label: "Role", value: "Full Stack Developer" },
+            { label: "Role", value: "Java Developer" },
             { label: "Location", value: "Bhopal, India" },
           ].map((item, i) => (
             <motion.div
