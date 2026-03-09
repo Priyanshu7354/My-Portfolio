@@ -9,7 +9,7 @@ import {
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa";
-import { SiGeeksforgeeks } from "react-icons/si";
+import { SiGeeksforgeeks, SiLeetcode } from "react-icons/si";
 import FadeInWhenVisible from "../animations/FadeInWhenVisible";
 
 export default function Contact() {
@@ -108,7 +108,7 @@ export default function Contact() {
               {/* Location */}
               <div className="flex items-center gap-4">
                 <FaMapMarkerAlt className="text-indigo-500" />
-                <span className="font-medium">Bhopal, India</span>
+                <span className="font-medium">Bangalore, India</span>
               </div>
             </div>
           </div>
@@ -182,6 +182,16 @@ export default function Contact() {
               className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(37,99,235,0.9)]"
             >
               <FaLinkedin className="text-xl text-blue-600 group-hover:rotate-12 group-hover:scale-125 transition-transform" />
+            </a>
+
+            {/* LeetCode */}
+            <a
+              href="https://leetcode.com/u/pbhatnagar631/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border dark:border-gray-700 animate-[pulse-glow_2.5s_ease-in-out_infinite] hover:scale-110 hover:drop-shadow-[0_0_18px_rgba(249,115,22,0.9)]"
+            >
+              <SiLeetcode className="text-xl text-orange-500 group-hover:rotate-12 group-hover:scale-125 transition-transform" />
             </a>
 
             {/* GeeksforGeeks */}

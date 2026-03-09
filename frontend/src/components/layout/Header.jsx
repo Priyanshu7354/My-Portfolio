@@ -62,8 +62,8 @@ export default function Header({
           ["Projects", "#projects"],
           ["Certifications", "#certifications"],
           ["Skills", "#skills"],
-          ["Experience", "#experience"],
           ["Education", "#education"],
+          ["Experience", "#experience"],
           ["Resume", "#resume"],
           ["Contact", "#contact"],
         ].map(([label, href]) => (

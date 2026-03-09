@@ -21,17 +21,19 @@ const card = {
 
 const skills = [
   "Java",
+  "Spring Boot",
+  "Spring MVC",
+  "REST APIs",
+  "Microservices",
+  "Hibernate / JPA",
   "MySQL",
-  "HTML5",
-  "CSS3",
-  "JavaScript",
-  "React",
-  "Node.js",
   "MongoDB",
-  "Tailwind",
-  "Python",
-  "Git/GitHub"
-  
+  "JWT Authentication",
+  "Maven",
+  "Swagger",
+  "Postman",
+  "Git / GitHub",
+  "React",
 ];
 
 export default function Skills() {
@@ -45,7 +47,7 @@ export default function Skills() {
         transition={{ duration: 0.5 }}
         className="text-3xl font-bold mb-8 tracking-tight"
       >
-        Skills
+        Technical Skills
       </motion.h2>
 
       {/* Skills Grid */}
@@ -90,7 +92,7 @@ export default function Skills() {
             <div>
               <div className="font-semibold">{skill}</div>
               <div className="text-xs text-gray-500 dark:text-gray-400">
-                Proficient
+                Experienced
               </div>
             </div>
           </motion.div>

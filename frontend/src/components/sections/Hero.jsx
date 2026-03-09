@@ -14,7 +14,8 @@ export default function Hero({ profilePic, dark }) {
       >
         {/* Availability Badges */}
         <div className="flex flex-wrap gap-3">
-          {/* Internship Badge */}
+          
+          {/* Experience Badge */}
           <motion.div
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ repeat: Infinity, duration: 2 }}
@@ -23,14 +24,11 @@ export default function Hero({ profilePic, dark }) {
               text-emerald-700 dark:text-emerald-400
               text-sm font-medium shadow-sm"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            Available for Internship
+            <span className="text-base">⚡</span>
+            1.5+ Years Experience
           </motion.div>
 
-          {/* Full-Time Badge */}
+          {/* Job Seeking Badge */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full
@@ -39,7 +37,7 @@ export default function Hero({ profilePic, dark }) {
               text-sm font-medium shadow-sm"
           >
             <span className="text-base">💼</span>
-            Open to Full-Time Roles
+            Open to Java Backend Developer Roles
           </motion.div>
         </div>
 
@@ -48,16 +46,19 @@ export default function Hero({ profilePic, dark }) {
         </p>
 
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-          I build robust <br className="hidden sm:block" />
+          Java Backend Developer <br className="hidden sm:block" />
           <span className="text-indigo-600">
-            scalable Java applications
+            building scalable backend systems
           </span>
           .
         </h1>
 
         <p className="text-gray-600 dark:text-gray-300 max-w-xl leading-relaxed">
-          Java Developer focused on enterprise solutions, microservices,
-          performance optimization, and secure backend systems.
+          Java Backend Developer with 1.5+ years of experience building
+          scalable microservices and enterprise applications using
+          Spring Boot, REST APIs, MySQL, and secure authentication
+          systems. Passionate about performance optimization,
+          distributed systems, and clean backend architecture.
         </p>
 
         {/* CTA Buttons */}
@@ -113,8 +114,8 @@ export default function Hero({ profilePic, dark }) {
         {/* Info Cards */}
         <div className="grid grid-cols-2 gap-4 mt-6">
           {[
-            { label: "Role", value: "Java Developer" },
-            { label: "Location", value: "Bhopal, India" },
+            { label: "Role", value: "Java Backend Developer" },
+            { label: "Experience", value: "1.5+ Years" },
           ].map((item, i) => (
             <motion.div
               key={i}
