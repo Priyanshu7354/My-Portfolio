@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "chmod +x node_modules/.bin/vite",
     "build": "vite build",
+    "vercel-build": "npm ci && chmod +x node_modules/.bin/vite && npm run build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
