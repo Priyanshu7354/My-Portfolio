@@ -54,7 +54,7 @@ export default function Hero({ profilePic, dark }) {
         </h1>
 
         <p className="text-gray-600 dark:text-gray-300 max-w-xl leading-relaxed">
-          Java Backend Developer with 1.5+ years of experience building
+          Java Backend Developer with 2.2+ years of experience building
           scalable microservices and enterprise applications using
           Spring Boot, REST APIs, MySQL, and secure authentication
           systems. Passionate about performance optimization,
