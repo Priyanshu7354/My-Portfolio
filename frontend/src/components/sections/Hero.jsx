@@ -25,7 +25,7 @@ export default function Hero({ profilePic, dark }) {
               text-sm font-medium shadow-sm"
           >
             <span className="text-base">⚡</span>
-            1.5+ Years Experience
+            2.2+ Years Experience
           </motion.div>
 
           {/* Job Seeking Badge */}
